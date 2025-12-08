@@ -1,0 +1,58 @@
+{
+  "name": "hand",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "postinstall": "npm install next@16.0.7 react@19.2.1 react-dom@19.2.1 eslint-config-next@16.0.7 --save-exact --force && npm install tailwindcss@^3.4.17 postcss@^8.4.49 autoprefixer@^10.4.20 && npm install typescript@^5.7.2 @types/react@^19.2.7 @types/react-dom@^19.2.3",
+    "prebuild": "npm install next@16.0.7 react@19.2.1 react-dom@19.2.1 eslint-config-next@16.0.7 --save-exact --force && npm install tailwindcss@^3.4.17 postcss@^8.4.49 autoprefixer@^10.4.20 && npm install typescript@^5.7.2 @types/react@^19.2.7 @types/react-dom@^19.2.3",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@playwright/browser-chromium": "^1.56.1",
+    "@sparticuz/chromium": "^141.0.0",
+    "@stripe/stripe-js": "^7.9.0",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "autoprefixer": "10.4.20",
+    "clsx": "^2.1.1",
+    "firebase": "^12.2.1",
+    "firebase-admin": "^13.5.0",
+    "jspdf": "^3.0.3",
+    "next": "16.0.7",
+    "pdfmake": "^0.2.20",
+    "playwright": "^1.56.1",
+    "playwright-core": "^1.56.1",
+    "postcss": "8.4.49",
+    "puppeteer-core": "^24.27.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "roboto-fontface": "^0.10.0",
+    "stripe": "^18.5.0",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.2"
+  },
+  "devDependencies": {
+    "@swc/helpers": "^0.5.17",
+    "@swc/jest": "^0.2.36",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
+    "@types/jspdf": "^1.3.3",
+    "@types/node": "^22.10.2",
+    "@types/pdfmake": "^0.2.12",
+    "eslint": "^9.15.0",
+    "eslint-config-next": "16.0.7",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0"
+  },
+  "overrides": {
+    "jws": ">=3.2.3 <4.0.0 || >=4.0.1"
+  }
+}
