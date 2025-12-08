@@ -112,7 +112,17 @@ export const CritiqueResults: React.FC<CritiqueResultsProps> = (props) => {
     const skinScore = critique.categoryScores?.peau || critique.score || 50
     
     // Scores détaillés de peau depuis l'API ou calculés (jamais 0)
-    const skinDetails = critique.categoryScores || {}
+    type SkinDetails = {
+      texture?: number;
+      uniformite?: number;
+      hydratation?: number;
+      eclat?: number;
+      finessePores?: number;
+      elasticite?: number;
+      [key: string]: number | undefined;
+    }
+    
+    const skinDetails = (critique.categoryScores || {}) as SkinDetails
     
     // Fonction pour obtenir un score réaliste (jamais 0, utilise skinScore comme base si manquant)
     const getRealisticScore = (value: number | undefined, baseScore: number): number => {
