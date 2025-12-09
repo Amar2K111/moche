@@ -100,16 +100,16 @@ function OfferContent() {
       {/* Floating badges */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-4 -rotate-2 transform rounded-xl bg-white px-4 py-2 shadow-md md:left-12">
-          <p className="text-sm font-medium text-primary-blue">Analyse IA précise</p>
+          <p className="text-sm font-medium text-primary-blue">Analyse IA précise de la peau</p>
         </div>
         <div className="absolute top-32 right-8 rotate-2 transform rounded-xl bg-white px-4 py-2 shadow-md md:right-20">
-          <p className="text-sm font-medium text-primary-blue">Note sur 100</p>
+          <p className="text-sm font-medium text-primary-blue">Score peau sur 100</p>
         </div>
         <div className="absolute bottom-1/4 left-8 rotate-1 transform rounded-xl bg-white px-4 py-2 shadow-md md:left-24">
           <p className="text-sm font-medium text-primary-blue">100% Honnête</p>
         </div>
         <div className="absolute bottom-24 right-8 -rotate-1 transform rounded-xl bg-white px-4 py-2 shadow-md md:right-20 md:bottom-28">
-          <p className="text-sm font-medium text-primary-blue">PDF personnalisé avec conseils d'amélioration</p>
+          <p className="text-sm font-medium text-primary-blue">Routine skincare personnalisée</p>
         </div>
       </div>
 
@@ -133,7 +133,7 @@ function OfferContent() {
         </Link>
         
         <p className="mb-6 text-center text-sm font-medium text-balance text-gray-600 sm:text-xl">
-          Analyse gratuite + PDF personnalisé avec conseils pour améliorer ton apparence
+          Analyse gratuite + PDF personnalisé avec routine skincare pour améliorer ta peau
             </p>
             
         {/* Pricing Options */}
@@ -163,7 +163,7 @@ function OfferContent() {
               )}
               </div>
               <p className="text-sm text-gray-600 text-left">
-                Génère un nombre illimité de PDF personnalisés de tes photos avec conseils d'amélioration
+                Génère un nombre illimité de PDF personnalisés avec routine skincare adaptée à ta peau
               </p>
             </div>
               </button>

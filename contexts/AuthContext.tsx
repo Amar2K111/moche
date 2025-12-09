@@ -92,7 +92,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             } as User & UserData)
           } else {
             const userData = userDoc.data()
-            const isNewUserValue = !userData?.onboardingCompleted
+            // Check if onboarding is completed in Firestore
+            const onboardingCompleted = userData?.onboardingCompleted === true
+            const isNewUserValue = !onboardingCompleted
             
             setIsNewUser(isNewUserValue)
             setOnboardingData(userData?.onboardingData || null)
@@ -101,6 +103,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const mergedUser = {
               ...user,
               ...userData,
+              onboardingCompleted: onboardingCompleted,
               totalUploads: userData?.totalUploads || 0,
               premium: userData?.premium === true, // Explicitly check for true
               language: userData?.language || 'en'
@@ -182,7 +185,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const saveOnboardingProgress = async (data: any) => {
     if (!user) return
     
-    // Check if all required fields are answered
+    // Check if all required fields are answered (including new fields)
     const allAnswered = data.dreamInterest && 
       data.obstacles && data.obstacles.length > 0 && 
       data.validation && 
@@ -195,17 +198,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       data.feedback && 
       data.expectations && 
       data.fears && 
-      data.motivation;
+      data.motivation &&
+      data.skinImprovement &&
+      data.futureConfidence &&
+      data.lifeChange &&
+      data.productHope &&
+      data.readyToChange;
     
     if (!allAnswered) {
+      // Save progress even if not all answered yet
+      try {
+        await setDoc(doc(db, 'users', user.uid), {
+          onboardingData: data,
+          onboarding: true,
+          onboardingCompleted: false // Keep as false until all questions are answered
+        }, { merge: true })
+        setOnboardingData(data)
+      } catch (error) {
+        console.error('Error saving onboarding progress:', error)
+        throw error
+      }
       return;
     }
     
+    // All questions answered, save progress
     try {
       await setDoc(doc(db, 'users', user.uid), {
         onboardingData: data,
-        onboarding: true, // Simple boolean field
-        onboardingCompleted: false // Keep as false until all questions are answered
+        onboarding: true,
+        onboardingCompleted: false // Will be set to true by markOnboardingCompleted
       }, { merge: true })
       setOnboardingData(data)
     } catch (error) {
@@ -222,7 +243,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         onboardingCompleted: true,
         onboarding: true // Ensure onboarding is set to true
       }, { merge: true })
+      
+      // Update local state immediately
       setIsNewUser(false)
+      setUser(prev => prev ? { ...prev, onboardingCompleted: true } : null)
     } catch (error) {
       console.error('Error marking onboarding as completed:', error)
       throw error
